@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  etcd:
+    image: bitnami/etcd:3  # 镜像
+    container_name: etcd       # 容器名 --name
+    restart: always             # 总是重启
+    user: root
+    ports:                      # 端口映射 -p
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      - CLIENT_ADDR=etcd
+      - ALLOW_NONE_AUTHENTICATION=yes
+    volumes:
+      - ./data/etcd:/bitnami/etcd
